@@ -42,6 +42,15 @@
      kingbot-nick* nick
      kingbot-server* server))
 
+(def restart-kingbot ()
+  (with (c kingbot-channel*
+	 n kingbot-nick*
+	 s kingbot-server*)
+    (aif irc-out* disconnect.it)
+    (aif kingbot-thread* kill-thread.it)
+    (load "~/code/kingbot/kingbot.arc")
+    (kingbot s c n)))
+  
 (def kingbot-parse (line)
   (aif (irc-parse line)
        (let (nick user host command chan msg) it
