@@ -23,11 +23,15 @@
   troops    nil
   res       nil)
 
-(= kingbot-thread* nil
-   kingbot-channel* nil
-   players* (table)
-   setts* (table)
-   missions* (table))
+(def init-kingbot ()
+  (init-irc)
+  (= kingbot-thread* nil
+     kingbot-server* nil
+     kingbot-channel* nil
+     kingbot-nick* nil
+     players* (table)
+     setts* (table)
+     missions* (table)))
 
 (def kingbot (server channel nick)
   (irc-connect server nick)
