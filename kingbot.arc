@@ -7,7 +7,8 @@
   buildings nil
   troops    nil
   res       nil
-  points    nil)
+  points    nil
+  last-hit  nil)
 
 (deftem player
   points    nil
