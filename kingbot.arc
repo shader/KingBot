@@ -36,8 +36,11 @@
 (def kingbot (server channel nick)
   (irc-connect server nick)
   (irc "JOIN " channel)
-  (= kingbot-thread* (thread (irc-loop kingbot-parse)))
-  (= kingbot-channel* channel))
+  (= kingbot-thread* 
+       (thread (irc-loop kingbot-parse))
+     kingbot-channel* channel
+     kingbot-nick* nick
+     kingbot-server* server))
 
 (def kingbot-parse (line)
   (aif (irc-parse line)
