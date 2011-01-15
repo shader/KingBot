@@ -60,6 +60,10 @@
 	      (re-match (string "(.*) o[fn] (.*) \\(([0-9]+)\\|([0-9]+)\\).*at ([0-9]+:[0-9]+:[0-9]+)") msg)
 	        (let (m type name x y eta) it
 		  (irc-msg chan (string "Type: " type " Name: " name 
-					" X: " x " Y: " y " ETA: " eta)))))))
+					" X: " x " Y: " y " ETA: " eta)))
+	      (re-match "(?i:distance.*?\\(?([0-9]+)\\|([0-9]+)\\)?.*?\\(?([0-9]+)\\|([0-9]+)\\)?)" msg)
+	        (let (x1 y1 x2 y2) (map [coerce _ 'int] cdr.it)
+		  (irc-msg chan (distance x1 y1 x2 y2)))))))
 
-(def mission (
+(def distance (x1 y1 x2 y2)
+  (sqrt (+ (expt (- x1 x2) 2) (expt (- y1 y2) 2))))
