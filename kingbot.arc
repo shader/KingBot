@@ -70,7 +70,7 @@
 	 s kingbot-server*)
     (aif irc-out* disconnect.it)
     (aif kingbot-thread* kill-thread.it)
-    (load "~/code/kingbot/kingbot.arc")
+    (load "../kingbot/kingbot.arc")
     (kingbot s c n)))
 
 ;; (= templar      "(?i:templar|temp)s?"
